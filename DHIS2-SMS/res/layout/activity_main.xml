@@ -13,39 +13,70 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
+
     <TextView  
         android:layout_width="fill_parent" 
         android:layout_height="wrap_content" 
         android:text="URL"
-        />     
-    <EditText 
-        android:id="@+id/txtURL"  
-        android:layout_width="fill_parent"      
-        android:layout_height="150px"
         />
+
+    <EditText
+        android:id="@+id/txtURL"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:lines="3" />
     
     <TextView  
         android:layout_width="fill_parent" 
         android:layout_height="wrap_content"         
         android:text="DHIS2 username"
         />     
-    <EditText 
-        android:id="@+id/txtUsername"  
-        android:layout_width="fill_parent" 
-        android:layout_height="100px"
-        android:gravity="top"         
-        />          
+
+    <EditText
+        android:id="@+id/txtUsername"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:lines="1" />
+          
     <TextView  
         android:layout_width="fill_parent" 
         android:layout_height="wrap_content"         
         android:text="DHIS2 password"
         />     
-    <EditText 
-        android:id="@+id/txtPassword"  
-        android:layout_width="fill_parent" 
-        android:layout_height="100px"
-        android:gravity="top"         
-        />          
+
+    <EditText
+        android:id="@+id/txtPassword"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:lines="1" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Commands to forward (comma separated)" />
+
+    <EditText
+        android:id="@+id/txtCommands"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="top"
+        android:lines="1" />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Forward SMS messages" />
+
+    <ToggleButton
+        android:id="@+id/toggleForward"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Message forwarding"
+        android:textOff="Do not forward messages"
+        android:textOn="Forward messages" />
     
     <Button 
         android:id="@+id/btnSave"  

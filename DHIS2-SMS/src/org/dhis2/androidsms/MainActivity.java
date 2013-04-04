@@ -12,6 +12,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 public class MainActivity extends Activity {
 
@@ -28,7 +29,9 @@ public class MainActivity extends Activity {
     EditText txtPassword;
     EditText txtUsername;
     EditText txtURL;
- 
+    EditText txtCommands;
+    ToggleButton toggleForward;
+    
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) 
@@ -45,26 +48,35 @@ public class MainActivity extends Activity {
         txtPassword = (EditText) findViewById(R.id.txtPassword);
         txtUsername = (EditText) findViewById(R.id.txtUsername);
         txtURL = (EditText) findViewById(R.id.txtURL);
+		txtCommands = (EditText) findViewById(R.id.txtCommands);
+		toggleForward = (ToggleButton) findViewById(R.id.toggleForward);
 		
 		txtURL.setText(settings.getString("dhis2.url","http://apps.dhis2.org/dev/sms/smsinput.action"));
 		txtUsername.setText(settings.getString("dhis2.username","admin"));
 		txtPassword.setText(settings.getString("dhis2.password","district"));
+		txtCommands.setText(settings.getString("dhis2.commands","report"));
+		toggleForward.setChecked(settings.getBoolean("dhis2.forward",true));
 		
-        
         btnSave.setOnClickListener(new View.OnClickListener() 
         {
             public void onClick(View v) 
             {   
             	String password = txtPassword.getText().toString();
                 String username = txtUsername.getText().toString();
-                String url = txtURL.getText().toString();                 
+                String url = txtURL.getText().toString();   
+                String commands = txtCommands.getText().toString();   
+                
                 // Save it in preferences
                 SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
                 SharedPreferences.Editor editor = settings.edit();
                 editor.putString("dhis2.username", username);
                 editor.putString("dhis2.password", password);
                 editor.putString("dhis2.url", url);
+                editor.putString("dhis2.commands", commands.trim());
+                editor.putBoolean("dhis2.forward", toggleForward.isChecked());
                 editor.commit();
+                Toast.makeText(getApplicationContext(), "Settings saved",
+    					Toast.LENGTH_SHORT).show();
                 
             }
         });        
