@@ -13,6 +13,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
 import android.util.Base64;
@@ -23,6 +24,9 @@ public class SmsReceiver extends BroadcastReceiver {
 	private static final String TAG = "SmsReceiver";
 
 	public static final String PREFS_NAME = "DHIS2PrefsFile";
+	String urlString;
+	String username;
+	String password;
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
@@ -71,13 +75,13 @@ public class SmsReceiver extends BroadcastReceiver {
 						Log.d(TAG,"Checking token ");
 						if (tokenizer.nextToken().equalsIgnoreCase(command)) {
 
-							forwardMessage(
-									settings.getString("dhis2.url",
-											"http://apps.dhis2.org/dev/sms/smsinput.action"),
-									msgs[i].getOriginatingAddress(), 
-									msgs[i].getMessageBody().toString(),
-									settings.getString("dhis2.username","admin"), 
-									settings.getString("dhis2.password", "district"));
+							urlString = settings.getString("dhis2.url",
+									"http://apps.dhis2.org/dev/sms/smsinput.action");
+							username = settings.getString("dhis2.username","admin");
+							password = settings.getString("dhis2.password", "district");
+
+							new ForwardMessageTask().execute(msgs[i].getOriginatingAddress(), 
+							msgs[i].getMessageBody().toString());
 
 							Toast.makeText(context, "Forwarded SMS to DHIS2",
 									Toast.LENGTH_SHORT).show();
@@ -97,34 +101,6 @@ public class SmsReceiver extends BroadcastReceiver {
 
 	}
 
-	public void forwardMessage(String urlString, String sender, String message,
-			String username, String password) {
-		try {
-
-			String query = "?sender=" + URLEncoder.encode(sender, "utf-8")
-					+ "&message=" + URLEncoder.encode(message, "utf-8");
-			String url = urlString + query;
-
-			HttpURLConnection c = (HttpURLConnection) new URL(url)
-					.openConnection();
-			c.setRequestProperty(
-					"Authorization",
-					"Basic "
-							+ Base64.encodeToString(
-									(username + ":" + password).getBytes(),
-									Base64.NO_WRAP));
-			c.setUseCaches(false);
-			c.connect();
-
-			readStream(c.getInputStream());
-
-			c.disconnect();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
 
 	private void readStream(InputStream in) {
 		BufferedReader reader = null;
@@ -136,15 +112,77 @@ public class SmsReceiver extends BroadcastReceiver {
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
+			Log.e(TAG, "Exception:" + e, e);
 		} finally {
 			if (reader != null) {
 				try {
 					reader.close();
 				} catch (IOException e) {
 					e.printStackTrace();
+					Log.e(TAG, "Exception:" + e, e);
 				}
 			}
 		}
 	}
+	
+    class ForwardMessageTask extends AsyncTask<String, Void, Void> {
+
+        private Exception exception;
+
+//        protected RSSFeed doInBackground(String... urls) {
+//            try {
+//                URL url= new URL(urls[0]);
+//                SAXParserFactory factory =SAXParserFactory.newInstance();
+//                SAXParser parser=factory.newSAXParser();
+//                XMLReader xmlreader=parser.getXMLReader();
+//                RssHandler theRSSHandler=new RssHandler();
+//                xmlreader.setContentHandler(theRSSHandler);
+//                InputSource is=new InputSource(url.openStream());
+//                xmlreader.parse(is);
+//                return theRSSHandler.getFeed();
+//            } catch (Exception e) {
+//                this.exception = e;
+//                return null;
+//            }
+//        }
+        
+
+//        protected void onPostExecute(RSSFeed feed) {
+//            // TODO: check this.exception 
+//            // TODO: do something with the feed
+//        }
+
+
+        // Args: sender, message
+		@Override
+		protected Void doInBackground(String... arg0) {
+    		try {
+
+    			String query = "?sender=" + URLEncoder.encode(arg0[0], "utf-8")
+    					+ "&message=" + URLEncoder.encode(arg0[1], "utf-8");
+    			String url = urlString + query;
+
+    			HttpURLConnection c = (HttpURLConnection) new URL(url)
+    					.openConnection();
+    			c.setRequestProperty(
+    					"Authorization",
+    					"Basic "
+    							+ Base64.encodeToString(
+    									(username + ":" + password).getBytes(),
+    									Base64.NO_WRAP));
+    			c.setUseCaches(false);
+    			c.connect();
+
+    			readStream(c.getInputStream());
+
+    			c.disconnect();
+
+    		} catch (Exception e) {
+    			e.printStackTrace();
+    			Log.e(TAG, "Exception:" + e, e);
+    		}
+    		return null;
+		}
+     }
 
 }
