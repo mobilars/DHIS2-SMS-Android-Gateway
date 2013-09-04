@@ -86,7 +86,7 @@ public class MainActivity extends Activity {
 		toggleForward.setChecked(settings.getBoolean("dhis2.forward", true));
 
 		// Show IP address
-		textIPAddress.setText("Listening at: http://" + getLocalIpAddress()+ "/send?recipient={recipient}&content={content}");
+		textIPAddress.setText("Listening at: http://" + getLocalIpAddress()+ ":8000/send?recipient={recipient}&content={content}");
 
 		btnSave.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
