@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,83 +7,91 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
-
-    <LinearLayout 
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
-
-    <TextView  
-        android:layout_width="fill_parent" 
-        android:layout_height="wrap_content" 
-        android:text="URL"
-        />
-
-    <EditText
-        android:id="@+id/txtURL"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:lines="3" />
     
-    <TextView  
-        android:layout_width="fill_parent" 
-        android:layout_height="wrap_content"         
-        android:text="DHIS2 username"
-        />     
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-    <EditText
-        android:id="@+id/txtUsername"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="top"
-        android:lines="1" />
-          
-    <TextView  
-        android:layout_width="fill_parent" 
-        android:layout_height="wrap_content"         
-        android:text="DHIS2 password"
-        />     
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="URL" />
 
-    <EditText
-        android:id="@+id/txtPassword"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="top"
-        android:lines="1" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+            </LinearLayout>
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Commands to forward (comma separated)" />
+            <EditText
+                android:id="@+id/txtURL"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:lines="3" />
 
-    <EditText
-        android:id="@+id/txtCommands"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:gravity="top"
-        android:lines="1" />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="DHIS2 username" />
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Forward SMS messages" />
+            <EditText
+                android:id="@+id/txtUsername"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:lines="1" />
 
-    <ToggleButton
-        android:id="@+id/toggleForward"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Message forwarding"
-        android:textOff="Do not forward messages"
-        android:textOn="Forward messages" />
-    
-    <Button 
-        android:id="@+id/btnSave"  
-        android:layout_width="fill_parent" 
-        android:layout_height="wrap_content"
-        android:text="Save"
-        />    
-</LinearLayout>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="DHIS2 password" />
 
-</RelativeLayout>
+            <EditText
+                android:id="@+id/txtPassword"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:lines="1" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Commands to forward (comma separated)" />
+
+            <EditText
+                android:id="@+id/txtCommands"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="top"
+                android:lines="1" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Forward SMS messages" />
+
+            <ToggleButton
+                android:id="@+id/toggleForward"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Message forwarding"
+                android:textOff="Do not forward messages"
+                android:textOn="Forward messages" />
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Save" />
+
+            <TextView
+                android:id="@+id/textIPAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="(No IP address)" />
+
+        </LinearLayout>
+
+</ScrollView >
