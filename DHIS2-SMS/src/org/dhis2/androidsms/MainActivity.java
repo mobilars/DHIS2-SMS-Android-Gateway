@@ -79,7 +79,7 @@ public class MainActivity extends Activity {
 		textIPAddress = (TextView) findViewById(R.id.textIPAddress);
 
 		txtURL.setText(settings.getString("dhis2.url",
-				"http://apps.dhis2.org/dev/sms/smsinput.action"));
+				"http://apps.dhis2.org:8000/dev/sms/smsinput.action"));
 		txtUsername.setText(settings.getString("dhis2.username", "admin"));
 		txtPassword.setText(settings.getString("dhis2.password", "district"));
 		txtCommands.setText(settings.getString("dhis2.commands", "report"));
