@@ -1,4 +1,0 @@
-INDEX VERSION 1.126+C:\Users\roland\DHIS2-SMS-Android-Gateway\.metadata\.plugins\org.eclipse.jdt.core
-2573922911.index
-3793224488.index
-2604281713.index
