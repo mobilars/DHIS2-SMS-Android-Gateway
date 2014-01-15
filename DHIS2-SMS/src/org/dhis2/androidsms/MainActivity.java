@@ -35,7 +35,7 @@ public class MainActivity extends Activity {
 
 	private static String TAG = "MainActivity";
 	public static final String PREFS_NAME = "DHIS2PrefsFile";
-
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
