@@ -1,4 +1,4 @@
-package org.dhis2.androidsms;
+package org.dhis2.androidsms2;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,6 +10,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 import java.util.Enumeration;
+
+import org.dhis2.androidsms2.R;
 
 import android.app.Notification;
 import android.app.PendingIntent;

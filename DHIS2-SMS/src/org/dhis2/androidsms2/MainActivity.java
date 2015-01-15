@@ -1,4 +1,4 @@
-package org.dhis2.androidsms;
+package org.dhis2.androidsms2;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,6 +12,7 @@ import java.net.SocketException;
 import java.util.Enumeration;
 
 import org.apache.http.conn.util.InetAddressUtils;
+import org.dhis2.androidsms2.R;
 
 import android.net.Uri;
 import android.os.Bundle;

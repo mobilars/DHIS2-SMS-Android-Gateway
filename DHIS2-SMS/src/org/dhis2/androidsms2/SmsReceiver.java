@@ -1,4 +1,4 @@
-package org.dhis2.androidsms;
+package org.dhis2.androidsms2;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
